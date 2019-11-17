@@ -72,7 +72,7 @@
                 <br />
                 <small class="font-italic">[ year 1 ]</small>
               </th>
-              <th scope="col">
+              <th scope="col" @click="sort('returns.year_3')">
                 Returns
                 <br />
                 <small class="font-italic">[ year 3 ]</small>
@@ -205,12 +205,28 @@ export default {
     currentSort(val) {
       let sorted = [];
       if (val) {
+        // sorted = _.orderBy(this.funds, [val],[this.currentSortDir]);
         sorted = this.funds.sort((a, b) => {
           let modifier = 1;
           if (this.currentSortDir === "desc") modifier = -1;
-          if (a[val] < b[val]) return -1 * modifier;
-          if (a[val] > b[val]) return 1 * modifier;
-          return 0;
+
+          if (a[val]) {
+            return a[val].localeCompare(b[val]) * modifier;
+          }
+
+          if (val === "returns.year_1") {
+            return a.returns.year_1 < b.returns.year_1
+              ? -1 * modifier
+              : modifier;
+          }
+
+          if (val === "returns.year_3") {
+            return a.returns.year_3 < b.returns.year_3
+              ? -1 * modifier
+              : modifier;
+          }
+
+          return modifier;
         });
 
         this.currentPage = 1;
@@ -221,12 +237,30 @@ export default {
     currentSortDir(val) {
       let sorted = [];
       if (val) {
+        // sorted = _.orderBy(this.funds, [this.currentSort],[val]);
         sorted = this.funds.sort((a, b) => {
           let modifier = 1;
           if (val === "desc") modifier = -1;
-          if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
-          if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
-          return 0;
+
+          if (a[this.currentSort]) {
+            return (
+              a[this.currentSort].localeCompare(b[this.currentSort]) * modifier
+            );
+          }
+
+          if (this.currentSort === "returns.year_1") {
+            return a.returns.year_1 < b.returns.year_1
+              ? -1 * modifier
+              : modifier;
+          }
+
+          if (this.currentSort === "returns.year_3") {
+            return a.returns.year_3 < b.returns.year_3
+              ? -1 * modifier
+              : modifier;
+          }
+
+          return modifier;
         });
 
         this.currentPage = 1;

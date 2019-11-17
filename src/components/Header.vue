@@ -3,8 +3,8 @@
     <div class="inner">
       <h4 class="kuvera-brand text-uppercase">Kuvera Funds</h4>
       <nav class="nav nav-kuvera justify-content-center">
-          <router-link class="nav-link" exact to="/">Home</router-link>
-          <router-link class="nav-link" exact to="/funds">Explore</router-link>
+        <router-link class="nav-link" exact to="/">Home</router-link>
+        <router-link class="nav-link" exact to="/funds">Explore</router-link>
       </nav>
     </div>
   </header>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "Header",
+  name: "Header"
 };
 </script>
 
@@ -22,10 +22,10 @@ export default {
 }
 
 .nav-kuvera .nav-link {
-  padding: .25rem 0;
+  padding: 0.25rem 0;
   font-weight: 600;
   background-color: transparent;
-  border-bottom: .25rem solid transparent;
+  border-bottom: 0.25rem solid transparent;
 }
 
 .nav-kuvera .nav-link:hover,
@@ -39,7 +39,7 @@ export default {
 
 .nav-kuvera .router-link-active {
   color: #2a2a91;
-  border-bottom-color:#2a2a91;
+  border-bottom-color: #2a2a91;
 }
 
 @media (min-width: 48em) {
@@ -50,5 +50,4 @@ export default {
     float: right;
   }
 }
-
 </style>
